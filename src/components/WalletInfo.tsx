@@ -1,4 +1,5 @@
 import { useWallet } from '../hooks/useWallet';
+import { useState } from 'react';
 import './WalletInfo.css';
 
 export function WalletInfo() {
