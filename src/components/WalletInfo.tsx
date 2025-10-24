@@ -2,15 +2,23 @@ import { useWallet } from '../hooks/useWallet';
 import './WalletInfo.css';
 
 export function WalletInfo() {
-  const { 
-    isConnected, 
-    address, 
-    balance, 
-    chainId, 
-    isLoading, 
+
+  const {
+    isConnected,
+    address,
+    balance,
+    chainId,
+    isLoading,
     updateBalance,
-    clearError 
+    clearError,
   } = useWallet();
+  const [refreshMsg, setRefreshMsg] = useState<string | null>(null);
+
+  const handleRefresh = async () => {
+    await updateBalance();
+    setRefreshMsg('Balance refreshed!');
+    setTimeout(() => setRefreshMsg(null), 2000);
+  };
 
   if (!isConnected) {
     return null;
@@ -52,14 +60,18 @@ export function WalletInfo() {
         <div className="info-item">
           <label>Balance:</label>
           <div className="balance-container">
-            <span className="balance">
-              {isLoading ? '...' : `${formatBalance(balance)} ETH`}
+            <span className="balance" aria-live="polite">
+              {isLoading ? (
+                <span className="loading-spinner" aria-label="Loading">...</span>
+              ) : `${formatBalance(balance)} ETH`}
             </span>
-            <button 
+            <button
               className="refresh-button"
-              onClick={updateBalance}
+              onClick={handleRefresh}
               disabled={isLoading}
               title="Refresh balance"
+              aria-label="Refresh balance"
+              tabIndex={0}
             >
               ⟳
             </button>
@@ -74,7 +86,14 @@ export function WalletInfo() {
         </div>
       </div>
 
-      <button className="clear-error-button" onClick={clearError}>
+      {refreshMsg && (
+        <div className="success-message" role="status" aria-live="polite">
+          <span className="success-icon" aria-hidden="true">✅</span>
+          {refreshMsg}
+        </div>
+      )}
+
+      <button className="clear-error-button" onClick={clearError} aria-label="Clear error messages" tabIndex={0}>
         Clear Errors
       </button>
     </div>

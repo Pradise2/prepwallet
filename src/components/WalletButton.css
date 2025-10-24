@@ -76,3 +76,37 @@
 .error-icon {
   font-size: 16px;
 }
+
+.success-message {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 12px;
+  background-color: #e6ffed;
+  border: 1px solid #b7f5c9;
+  border-radius: 8px;
+  color: #228b22;
+  font-size: 14px;
+  max-width: 300px;
+  text-align: center;
+}
+
+.success-icon {
+  font-size: 16px;
+}
+
+@media (max-width: 480px) {
+  .wallet-button {
+    min-width: 120px;
+    font-size: 14px;
+    padding: 10px 16px;
+  }
+  .wallet-button-container {
+    gap: 8px;
+  }
+  .success-message, .error-message {
+    font-size: 12px;
+    max-width: 200px;
+    padding: 6px 8px;
+  }
+}

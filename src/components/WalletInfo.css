@@ -110,3 +110,41 @@
 .clear-error-button:hover {
   background: #e53e3e;
 }
+
+.success-message {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 12px;
+  background-color: #e6ffed;
+  border: 1px solid #b7f5c9;
+  border-radius: 8px;
+  color: #228b22;
+  font-size: 14px;
+  max-width: 300px;
+  text-align: center;
+  margin: 10px auto;
+}
+
+.success-icon {
+  font-size: 16px;
+}
+
+@media (max-width: 480px) {
+  .wallet-info {
+    padding: 12px;
+    max-width: 95vw;
+  }
+  .wallet-info-title {
+    font-size: 16px;
+  }
+  .info-item {
+    padding: 8px;
+    font-size: 12px;
+  }
+  .success-message {
+    font-size: 12px;
+    max-width: 200px;
+    padding: 6px 8px;
+  }
+}
